@@ -1,0 +1,40 @@
+﻿@page
+@model HotelManagementSystem.Pages.Rooms.DetailsModel
+@{
+        ViewData["Title"] = "Room Details";
+}
+
+<h2>Room Details</h2>
+
+    <div class="mb-3">
+        <label asp-for="Room.RoomNumber" class="form-label"></label>
+        <input asp-for="Room.RoomNumber" class="form-control" readonly/>
+        <span asp-validation-for="Room.RoomNumber" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Room.roomType" class="form-label"></label>
+        <input asp-for="Room.roomType" class="form-control" readonly />
+        <span asp-validation-for="Room.roomType" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Room.PricePerNight" class="form-label"></label>
+        <input asp-for="Room.PricePerNight" class="form-control" readonly />
+        <span asp-validation-for="Room.PricePerNight" class="text-danger"></span>
+    </div>
+    <div class="mb-3">
+        <label asp-for="Room.IsAvailable" class="form-label"></label>
+        <span asp-validation-for="Room.IsAvailable" class="text-danger"></span>
+
+        @if (Model.Room.IsAvailable)
+        {
+            <span class="badge bg-success">Available</span>
+        }
+        else
+        {
+            <span class="badge bg-danger">Occupied</span>
+    }
+    </div>
+
+    <a asp-page="Edit" asp-route-id="@Model.Room.Id" class="btn btn-primary">Edit Room</a>
+    <a asp-page="Index" class="btn btn-secondary">Back to List</a>
+

@@ -1,0 +1,21 @@
+﻿@page
+@model HotelManagementSystem.Pages.Rooms.CreateModel
+
+@if (TempData["Message"] != null)
+{
+    <div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<h2>Create New Room</h2>
+
+
+<form method="post">
+    <partial name="_RoomsForm" model="Model.Room" />
+
+    <button type="submit" class="btn btn-primary">Create a Room</button>
+    <a asp-page="Index" class="btn btn-secondary">Back to List</a>
+</form>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}

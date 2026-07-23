@@ -1,0 +1,147 @@
+is_global = true
+build_property.TargetFramework = net10.0
+build_property.TargetFramework = net10.0
+build_property.TargetPlatformMinVersion = 
+build_property.TargetPlatformMinVersion = 
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.UsingMicrosoftNETSdkWeb = true
+build_property.ProjectTypeGuids = 
+build_property.ProjectTypeGuids = 
+build_property.InvariantGlobalization = 
+build_property.InvariantGlobalization = 
+build_property.PlatformNeutralAssembly = 
+build_property.PlatformNeutralAssembly = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property.EnforceExtendedAnalyzerRules = 
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property._SupportedPlatformList = Linux,macOS,Windows
+build_property.TargetFrameworkIdentifier = .NETCoreApp
+build_property.TargetFrameworkVersion = v10.0
+build_property.RootNamespace = HotelManagementSystem
+build_property.RootNamespace = HotelManagementSystem
+build_property.ProjectDir = C:\Users\MY-HP\Documents\MY FILES\CONESTOGA SUBJECTS\MS Web Tech\HotelManagementSystem Latest (2)\HotelManagementSystem Latest\HotelManagementSystem Latest\
+build_property.EnableComHosting = 
+build_property.EnableGeneratedComInterfaceComImportInterop = 
+build_property.RazorLangVersion = 9.0
+build_property.SupportLocalizedComponentNames = 
+build_property.GenerateRazorMetadataSourceChecksumAttributes = 
+build_property.MSBuildProjectDirectory = C:\Users\MY-HP\Documents\MY FILES\CONESTOGA SUBJECTS\MS Web Tech\HotelManagementSystem Latest (2)\HotelManagementSystem Latest\HotelManagementSystem Latest
+build_property._RazorSourceGeneratorDebug = 
+build_property.EffectiveAnalysisLevelStyle = 10.0
+build_property.EnableCodeStyleSeverity = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Areas/Identity/Pages/Account/Login.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dpbi5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Areas/Identity/Pages/Account/Logout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxMb2dvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Areas/Identity/Pages/Account/Register.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxSZWdpc3Rlci5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Areas/Identity/Pages/Account/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcQWNjb3VudFxfVmlld0ltcG9ydHMuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Areas/Identity/Pages/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZhbGlkYXRpb25TY3JpcHRzUGFydGlhbC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Areas/Identity/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Areas/Identity/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = QXJlYXNcSWRlbnRpdHlcUGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Bookings/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va2luZ3NcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Bookings/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va2luZ3NcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Bookings/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va2luZ3NcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Bookings/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va2luZ3NcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Bookings/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va2luZ3NcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Bookings/_BookingsCard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va2luZ3NcX0Jvb2tpbmdzQ2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Bookings/_BookingsForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcQm9va2luZ3NcX0Jvb2tpbmdzRm9ybS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Error.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcRXJyb3IuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Privacy.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUHJpdmFjeS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Rooms/Create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbXNcQ3JlYXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Rooms/Delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbXNcRGVsZXRlLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Rooms/Details.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbXNcRGV0YWlscy5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Rooms/Edit.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbXNcRWRpdC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Rooms/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbXNcSW5kZXguY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Rooms/_RoomsCard.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbXNcX1Jvb21zQ2FyZC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Rooms/_RoomsForm.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcUm9vbXNcX1Jvb21zRm9ybS5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Shared/_LoginPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9Mb2dpblBhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Shared/_ValidationScriptsPartial.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9WYWxpZGF0aW9uU2NyaXB0c1BhcnRpYWwuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/_ViewImports.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdJbXBvcnRzLmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/_ViewStart.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcX1ZpZXdTdGFydC5jc2h0bWw=
+build_metadata.AdditionalFiles.CssScope = 
+
+[C:/Users/MY-HP/Documents/MY FILES/CONESTOGA SUBJECTS/MS Web Tech/HotelManagementSystem Latest (2)/HotelManagementSystem Latest/HotelManagementSystem Latest/Pages/Shared/_Layout.cshtml]
+build_metadata.AdditionalFiles.TargetPath = UGFnZXNcU2hhcmVkXF9MYXlvdXQuY3NodG1s
+build_metadata.AdditionalFiles.CssScope = b-diqi2l9hen

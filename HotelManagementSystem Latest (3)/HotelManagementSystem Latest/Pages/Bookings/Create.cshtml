@@ -1,0 +1,19 @@
+﻿@page
+@model HotelManagementSystem.Pages.Bookings.CreateBookingModel
+
+<div class="container">
+    <h2>Book a Room</h2>
+    <form method="post">
+        <div asp-validation-summary="All" class="text-danger"></div>
+        
+        <partial name="_BookingsForm" for="Booking"/>
+
+        <button type="submit" class="btn btn-primary mt-3">Confirm Booking</button>
+        <a asp-page="/Rooms/Index" class="btn btn-secondary mt-3">Back to Rooms</a>
+     </form>
+</div>
+
+@section Scripts {
+    <partial name="_ValidationScriptsPartial" />
+}
+

@@ -1,0 +1,29 @@
+﻿@page
+@model HotelManagementSystem.Pages.Bookings.IndexModel
+@{
+    ViewData["Title"] = "Bookings";
+}
+
+<form method="get" class="mb-3">
+    <div class="row">
+        <div class="col-auto">
+            <select asp-for="FilterByRoomId" class="form-control" asp-items="Model.RoomList">
+                <option value="">Select a room</option>
+            </select>
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-primary mt-3 mb-3">Filter by Room Number</button>
+        <a asp-page="./Index" class="btn btn-secondary mt-3 mb-3">Clear Filter</a>
+        <a asp-page="/Bookings/Create" class="btn btn-success mt-3 mb-3">Book a Room</a>
+    </div>
+
+    <partial name="_BookingsCard" model="Model.Bookings" />
+</form>
+
+<a asp-page="/Rooms/Index" class="btn btn-primary">Back to Rooms</a>
+
+@if (!Model.Bookings.Any())
+{
+    <p>No bookings found.</p>
+}

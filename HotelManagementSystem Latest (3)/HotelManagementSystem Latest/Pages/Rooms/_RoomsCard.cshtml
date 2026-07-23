@@ -1,0 +1,26 @@
+﻿@model IEnumerable<HotelManagementSystem.Models.Room>
+
+<table class="table table-bordered table-striped table-hover">
+    <thead>
+        <tr>
+            <th>Room Number</th>
+            <th>Room Type</th>
+            <th>Price Per Night</th>
+            <th>Actions</th>
+        </tr>
+    <tbody>
+        @foreach (var room in Model)
+        {
+            <tr>
+                <td>@room.RoomNumber</td>
+                <td>@room.roomType</td>
+                <td>@room.PricePerNight</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@room.Id">Edit</a>
+                    <a asp-page="./Details" asp-route-id="@room.Id">Details</a>
+                    <a asp-page="./Delete" asp-route-id="@room.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>

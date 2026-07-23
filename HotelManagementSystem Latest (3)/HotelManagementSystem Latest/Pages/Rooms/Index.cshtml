@@ -1,0 +1,29 @@
+﻿@page
+@using HotelManagementSystem.Models
+@model HotelManagementSystem.Pages.Rooms.IndexModel
+@if (TempData["Message"] != null)
+{
+<div class="alert alert-success">@TempData["Message"]</div>
+}
+
+<form method="get" class="mb-3">
+    <div class="row">
+        <div class="col-auto">
+            <select asp-for="roomType" class="form-control" asp-items="Html.GetEnumSelectList<HotelManagementSystem.Models.Room.RoomType>()">
+                <option value="">All Room Types</option>
+            </select>
+        </div>
+    </div>
+    <div>
+        <button class="btn btn-primary mt-3 mb-3">Filter by Room Type</button>
+        <a asp-page="./Index" class="btn btn-secondary mt-3 mb-3">Clear Filter</a>
+        <a asp-page="/Rooms/Create" class="btn btn-success mt-3 mb-3">Create a Room</a>
+    </div>
+
+    <partial name="_RoomsCard" model="Model.Rooms" />
+</form>
+
+@if (!Model.Rooms.Any())
+{
+<p>No rooms found.</p>
+}
