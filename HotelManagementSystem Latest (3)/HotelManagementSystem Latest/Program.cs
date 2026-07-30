@@ -8,6 +8,7 @@ WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
+
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
 builder.Services.AddDefaultIdentity<IdentityUser>(options => options.SignIn.RequireConfirmedAccount = true)
@@ -19,6 +20,16 @@ builder.Services.AddRazorPages(options =>
         options.Conventions.AllowAnonymousToFolder("/Rooms/Index");
     }
     );
+
+builder.Services.ConfigureApplicationCookie(options =>
+{
+    //options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
+    //options.SlidingExpiration = true;
+    options.Cookie.HttpOnly = true;
+    options.Cookie.SameSite = SameSiteMode.Strict;
+    options.LoginPath = "/Identity/Account/Login";
+    options.LogoutPath = "/Identity/Account/Logout";
+});
 
 WebApplication app = builder.Build();
 
@@ -36,6 +47,7 @@ else
 
 app.UseHttpsRedirection();
 
+app.UseStaticFiles();
 app.UseRouting();
 
 app.UseAuthentication();

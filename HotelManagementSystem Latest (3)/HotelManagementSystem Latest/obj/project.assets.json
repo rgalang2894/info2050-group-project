@@ -1,5 +1,5 @@
 {
-  "version": 3,
+  "version": 4,
   "targets": {
     "net10.0": {
       "Azure.Core/1.47.1": {
@@ -7060,23 +7060,23 @@
     ]
   },
   "packageFolders": {
-    "C:\\Users\\MY-HP\\.nuget\\packages\\": {},
+    "C:\\Users\\Revienne\\.nuget\\packages\\": {},
     "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\MY-HP\\Documents\\MY FILES\\CONESTOGA SUBJECTS\\MS Web Tech\\HotelManagementSystem Latest (2)\\HotelManagementSystem Latest\\HotelManagementSystem Latest\\HotelManagementSystem.csproj",
+      "projectUniqueName": "C:\\Users\\Revienne\\Desktop\\INFO2050\\info2050-group-project\\HotelManagementSystem Latest (3)\\HotelManagementSystem Latest\\HotelManagementSystem.csproj",
       "projectName": "HotelManagementSystem",
-      "projectPath": "C:\\Users\\MY-HP\\Documents\\MY FILES\\CONESTOGA SUBJECTS\\MS Web Tech\\HotelManagementSystem Latest (2)\\HotelManagementSystem Latest\\HotelManagementSystem Latest\\HotelManagementSystem.csproj",
-      "packagesPath": "C:\\Users\\MY-HP\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\MY-HP\\Documents\\MY FILES\\CONESTOGA SUBJECTS\\MS Web Tech\\HotelManagementSystem Latest (2)\\HotelManagementSystem Latest\\HotelManagementSystem Latest\\obj\\",
+      "projectPath": "C:\\Users\\Revienne\\Desktop\\INFO2050\\info2050-group-project\\HotelManagementSystem Latest (3)\\HotelManagementSystem Latest\\HotelManagementSystem.csproj",
+      "packagesPath": "C:\\Users\\Revienne\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Revienne\\Desktop\\INFO2050\\info2050-group-project\\HotelManagementSystem Latest (3)\\HotelManagementSystem Latest\\obj\\",
       "projectStyle": "PackageReference",
       "fallbackFolders": [
         "C:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages"
       ],
       "configFilePaths": [
-        "C:\\Users\\MY-HP\\AppData\\Roaming\\NuGet\\NuGet.Config",
+        "C:\\Users\\Revienne\\AppData\\Roaming\\NuGet\\NuGet.Config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.FallbackLocation.config",
         "C:\\Program Files (x86)\\NuGet\\Config\\Microsoft.VisualStudio.Offline.config"
       ],
@@ -7085,7 +7085,6 @@
       ],
       "sources": {
         "C:\\Program Files (x86)\\Microsoft SDKs\\NuGetPackages\\": {},
-        "C:\\Program Files\\dotnet\\library-packs": {},
         "https://api.nuget.org/v3/index.json": {}
       },
       "frameworks": {
@@ -7105,7 +7104,7 @@
         "auditLevel": "low",
         "auditMode": "all"
       },
-      "SdkAnalysisLevel": "10.0.200"
+      "SdkAnalysisLevel": "10.0.300"
     },
     "frameworks": {
       "net10.0": {
@@ -7178,7 +7177,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.201/PortableRuntimeIdentifierGraph.json",
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\10.0.302/PortableRuntimeIdentifierGraph.json",
         "packagesToPrune": {
           "Microsoft.AspNetCore": "(,10.0.32767]",
           "Microsoft.AspNetCore.Antiforgery": "(,10.0.32767]",
@@ -7595,5 +7594,37 @@
         }
       }
     }
-  }
+  },
+  "logs": [
+    {
+      "code": "NU1901",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'NuGet.Packaging' 6.12.1 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
+      "libraryId": "NuGet.Packaging",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1901",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'NuGet.Protocol' 6.12.1 has a known low severity vulnerability, https://github.com/advisories/GHSA-g4vj-cjjj-v7hg",
+      "libraryId": "NuGet.Protocol",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    },
+    {
+      "code": "NU1903",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Package 'SQLitePCLRaw.lib.e_sqlite3' 2.1.11 has a known high severity vulnerability, https://github.com/advisories/GHSA-2m69-gcr7-jv3q",
+      "libraryId": "SQLitePCLRaw.lib.e_sqlite3",
+      "targetGraphs": [
+        "net10.0"
+      ]
+    }
+  ]
 }
