@@ -1,0 +1,33 @@
+# Ignore Visual Studio temporary files, build outputs, and user-specific files
+.vs/
+*.user
+*.suo
+*.userosscache
+*.sln.docstates
+
+# Build Folders
+bin/
+obj/
+
+# Rider
+.idea/
+
+# Visual Studio Code
+.vscode/
+
+# SQLite DB files used for local development
+*.db
+*.db-shm
+*.db-wal
+
+# IIS Express
+/.vs/**/applicationhost.config
+
+# NuGet
+*.nupkg
+packages/
+
+# Logs
+
+# Rider
+*.sln.iml

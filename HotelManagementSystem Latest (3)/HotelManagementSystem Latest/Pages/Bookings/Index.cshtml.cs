@@ -35,9 +35,10 @@ namespace HotelManagementSystem.Pages.Bookings
                 .Include(b => b.Room)
                 .AsQueryable();
 
-            if (!string.IsNullOrEmpty(FilterByRoomId))
+            if (!string.IsNullOrEmpty(FilterByRoomId) && int.TryParse(FilterByRoomId, out int roomId))
             {
-                booking = booking.Where(b => b.RoomId.ToString() == FilterByRoomId);
+                // Compare numeric RoomId directly to keep the expression translatable to SQL
+                booking = booking.Where(b => b.RoomId == roomId);
             }
 
             Bookings = await booking.ToListAsync();

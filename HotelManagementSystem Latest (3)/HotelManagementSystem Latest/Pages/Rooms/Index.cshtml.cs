@@ -2,6 +2,8 @@ using HotelManagementSystem.Data;
 using HotelManagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
+using Microsoft.EntityFrameworkCore;
+using System.Threading;
 
 namespace HotelManagementSystem.Pages.Rooms
 {
@@ -18,7 +20,7 @@ namespace HotelManagementSystem.Pages.Rooms
         [BindProperty(SupportsGet = true)]
         public Room.RoomType? roomType { get; set; }
 
-        public void OnGet()
+        public async Task OnGetAsync(CancellationToken cancellationToken = default)
         {
             IQueryable<Room> rooms = _context.Rooms.AsQueryable();
 
@@ -27,7 +29,8 @@ namespace HotelManagementSystem.Pages.Rooms
                 rooms = rooms.Where(r => r.roomType >= roomType.Value);
             }
 
-            Rooms = rooms.ToList();
+            // Use EF Core async APIs so queries remain parameterized and executed server-side
+            Rooms = await rooms.ToListAsync(cancellationToken);
 
         }
     }
