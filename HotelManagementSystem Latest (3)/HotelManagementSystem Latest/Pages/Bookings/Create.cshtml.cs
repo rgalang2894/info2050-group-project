@@ -12,9 +12,14 @@ namespace HotelManagementSystem.Pages.Bookings
     public class CreateBookingModel : PageModel
     {
         private readonly ApplicationDbContext _context;
-        public CreateBookingModel(ApplicationDbContext context)
+        private readonly ILogger<CreateBookingModel> _logger;
+
+        public CreateBookingModel(
+            ApplicationDbContext context,
+            ILogger<CreateBookingModel> logger)
         {
             _context = context;
+            _logger = logger;
         }
 
         [BindProperty]
@@ -41,6 +46,11 @@ namespace HotelManagementSystem.Pages.Bookings
 
             if (!validRoom)
             {
+                _logger.LogWarning(
+                    "Security event: Booking rejected because the room is invalid or unavailable. UserName={UserName}, RoomId={RoomId}",
+                    User.Identity?.Name ?? "unknown",
+                    Booking.RoomId);
+
                 ModelState.AddModelError(
                     "Booking.RoomId",
                     "The selected room does not exist or is unavailable.");
@@ -58,6 +68,11 @@ namespace HotelManagementSystem.Pages.Bookings
 
             if (isOverlapping)
             {
+                _logger.LogWarning(
+                    "Security event: Booking rejected because the dates overlap. UserName={UserName}, RoomId={RoomId}",
+                    User.Identity?.Name ?? "unknown",
+                    Booking.RoomId);
+
                 ModelState.AddModelError(
                     string.Empty,
                     "The selected room is not available for the chosen dates.");
@@ -71,6 +86,13 @@ namespace HotelManagementSystem.Pages.Bookings
 
             _context.Bookings.Add(Booking);
             await _context.SaveChangesAsync();
+
+            _logger.LogInformation(
+                "Security event: Booking created. UserName={UserName}, BookingId={BookingId}, RoomId={RoomId}",
+                User.Identity?.Name ?? "unknown",
+                Booking.Id,
+                Booking.RoomId);
+
             return RedirectToPage("./Index");
         }
 
