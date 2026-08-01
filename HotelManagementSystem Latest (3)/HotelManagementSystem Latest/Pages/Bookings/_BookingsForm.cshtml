@@ -17,13 +17,13 @@
 <div class="row">
     <div class="col">
         <label asp-for="CheckInDate" class="form-label">Check-In Date</label>
-        <input asp-for="CheckInDate" class="form-control" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+        <input asp-for="CheckInDate" class="form-control" type="date" min="@DateTime.Today.ToString("yyyy-MM-dd")" />
         <span asp-validation-for="CheckInDate" class="text-danger"></span>
     </div>
 
     <div class="col">
         <label asp-for="CheckOutDate" class="form-label">Check-Out Date</label>
-        <input asp-for="CheckOutDate" class="form-control" type="date" min="@DateTime.Now.ToString("yyyy-MM-dd")" />
+        <input asp-for="CheckOutDate" class="form-control" type="date" min="@DateTime.Today.ToString("yyyy-MM-dd")" />
         <span asp-validation-for="CheckOutDate" class="text-danger"></span>
     </div>
 </div>
