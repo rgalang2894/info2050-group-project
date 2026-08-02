@@ -25,7 +25,7 @@
         <label asp-for="Room.IsAvailable" class="form-label"></label>
         <span asp-validation-for="Room.IsAvailable" class="text-danger"></span>
 
-        @if (Model.Room.IsAvailable)
+        @if (Model.Room?.IsAvailable ?? false)
         {
             <span class="badge bg-success">Available</span>
         }
@@ -35,6 +35,6 @@
     }
     </div>
 
-    <a asp-page="Edit" asp-route-id="@Model.Room.Id" class="btn btn-primary">Edit Room</a>
+    <a asp-page="Edit" asp-route-id="@Model.Room!.Id" class="btn btn-primary">Edit Room</a>
     <a asp-page="Index" class="btn btn-secondary">Back to List</a>
 

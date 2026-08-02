@@ -15,7 +15,7 @@ namespace HotelManagementSystem.Pages.Rooms
         {
             _context = context;
         }
-        public List<Room>? Rooms { get; private set; }
+        public List<Room> Rooms { get; private set; } = new();
 
         [BindProperty(SupportsGet = true)]
         public Room.RoomType? roomType { get; set; }
