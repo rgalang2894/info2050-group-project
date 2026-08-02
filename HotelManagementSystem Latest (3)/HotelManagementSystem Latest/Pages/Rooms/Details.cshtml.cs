@@ -15,7 +15,7 @@ namespace HotelManagementSystem.Pages.Rooms
         }
 
         [BindProperty]
-        public Room Room { get; set; }
+        public Room? Room { get; set; }
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
@@ -25,9 +25,6 @@ namespace HotelManagementSystem.Pages.Rooms
             }
             Room = await _context.Rooms.FirstOrDefaultAsync(m => m.Id == id);
             return Room == null ? NotFound() : Page();
-
-            Room = Room;
-            return Page();
         }
     }
 }

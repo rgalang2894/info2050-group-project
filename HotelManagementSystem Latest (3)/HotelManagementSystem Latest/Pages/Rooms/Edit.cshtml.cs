@@ -16,7 +16,7 @@ namespace HotelManagementSystem.Pages.Rooms
         }
 
         [BindProperty]
-        public Room Room { get; set; }
+        public Room? Room { get; set; }
         public IActionResult OnGet(int? id)
         {
             Room = _context.Rooms.Find(id);
@@ -30,12 +30,21 @@ namespace HotelManagementSystem.Pages.Rooms
             {
                 return Page();
             }
+
+            if (Room == null)
+            {
+                // No bound Room data - return to form with validation
+                return Page();
+            }
+
             Room? room = _context.Rooms.Find(id);
             if (room == null)
             {
                 return NotFound();
             }
-            room.RoomNumber = Room.RoomNumber;
+
+            // Update only when bound values are provided
+            room.RoomNumber = Room.RoomNumber ?? room.RoomNumber;
             room.roomType = Room.roomType;
             room.PricePerNight = Room.PricePerNight;
             _context.SaveChanges();

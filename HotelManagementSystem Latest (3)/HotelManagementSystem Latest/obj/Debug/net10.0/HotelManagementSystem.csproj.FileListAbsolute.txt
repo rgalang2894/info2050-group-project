@@ -5044,7 +5044,6 @@ C:\Users\olumi\source\repos\info2050-group-project\HotelManagementSystem Latest 
 C:\Users\olumi\source\repos\info2050-group-project\HotelManagementSystem Latest (3)\HotelManagementSystem Latest\obj\Debug\net10.0\staticwebassets.development.json
 C:\Users\olumi\source\repos\info2050-group-project\HotelManagementSystem Latest (3)\HotelManagementSystem Latest\obj\Debug\net10.0\staticwebassets.build.endpoints.json
 C:\Users\olumi\source\repos\info2050-group-project\HotelManagementSystem Latest (3)\HotelManagementSystem Latest\obj\Debug\net10.0\swae.build.ex.cache
-C:\Users\olumi\source\repos\info2050-group-project\HotelManagementSystem Latest (3)\HotelManagementSystem Latest\obj\Debug\net10.0\staticwebassets.upToDateCheck.txt
 C:\Users\olumi\source\repos\info2050-group-project\HotelManagementSystem Latest (3)\HotelManagementSystem Latest\obj\Debug\net10.0\HotelMan.F5E31FD0.Up2Date
 C:\Users\olumi\source\repos\info2050-group-project\HotelManagementSystem Latest (3)\HotelManagementSystem Latest\obj\Debug\net10.0\HotelManagementSystem.dll
 C:\Users\olumi\source\repos\info2050-group-project\HotelManagementSystem Latest (3)\HotelManagementSystem Latest\obj\Debug\net10.0\refint\HotelManagementSystem.dll
