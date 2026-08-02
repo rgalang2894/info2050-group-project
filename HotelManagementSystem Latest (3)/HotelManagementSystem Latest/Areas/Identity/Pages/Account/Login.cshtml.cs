@@ -111,10 +111,12 @@ namespace HotelManagementSystem.Areas.Identity.Pages.Account
             {
                 // This doesn't count login failures towards account lockout
                 // To enable password failures to trigger account lockout, set lockoutOnFailure: true
-                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: false);
+                var result = await _signInManager.PasswordSignInAsync(Input.Email, Input.Password, Input.RememberMe, lockoutOnFailure: true);
                 if (result.Succeeded)
                 {
-                    _logger.LogInformation("User logged in.");
+                    _logger.LogInformation(
+                        "Security event: Login succeeded. UserName={UserName}",
+                        Input.Email);
                     return LocalRedirect(returnUrl);
                 }
                 if (result.RequiresTwoFactor)
@@ -123,11 +125,16 @@ namespace HotelManagementSystem.Areas.Identity.Pages.Account
                 }
                 if (result.IsLockedOut)
                 {
-                    _logger.LogWarning("User account locked out.");
+                    _logger.LogWarning(
+                        "Security event: Account locked. UserName={UserName}",
+                        Input.Email);
                     return RedirectToPage("./Lockout");
                 }
                 else
                 {
+                    _logger.LogWarning(
+                        "Security event: Login failed. UserName={UserName}",
+                        Input.Email);
                     ModelState.AddModelError(string.Empty, "Invalid login attempt.");
                     return Page();
                 }
