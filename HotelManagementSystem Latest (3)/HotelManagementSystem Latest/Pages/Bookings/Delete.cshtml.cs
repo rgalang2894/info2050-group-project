@@ -7,7 +7,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HotelManagementSystem.Pages.Bookings
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class DeleteModel : PageModel
     {
         private readonly ApplicationDbContext _context;

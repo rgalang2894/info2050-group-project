@@ -6,7 +6,7 @@ using Microsoft.AspNetCore.Mvc.RazorPages;
 
 namespace HotelManagementSystem.Pages.Rooms
 {
-    [Authorize]
+    [Authorize(Roles = "Admin")]
     public class CreateModel : PageModel
     {
         private readonly ApplicationDbContext _context;

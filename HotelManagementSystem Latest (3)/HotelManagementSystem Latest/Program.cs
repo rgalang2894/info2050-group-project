@@ -33,14 +33,16 @@ builder.Services.AddDefaultIdentity<IdentityUser>(options =>
         options.Lockout.MaxFailedAccessAttempts = 5;
         options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
     })
+    .AddRoles<IdentityRole>()
+
     .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddRazorPages(options =>
-    {
-        options.Conventions.AuthorizeFolder("/Rooms/AdminOnly");
-        options.Conventions.AuthorizeFolder("/Bookings/AdminOnly");
-        options.Conventions.AllowAnonymousToFolder("/Rooms/Index");
-    }
-    );
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy =>
+        policy.RequireRole("Admin"));
+});
+
+builder.Services.AddRazorPages();
 
 builder.Services.ConfigureApplicationCookie(options =>
 {
@@ -55,6 +57,35 @@ builder.Services.ConfigureApplicationCookie(options =>
 });
 
 WebApplication app = builder.Build();
+// A01: seed roles and admin account
+using (var scope = app.Services.CreateScope())
+{
+    var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
+    await context.Database.MigrateAsync(); // self-creates DB on a fresh clone
+
+    var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
+    var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
+    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
+
+    foreach (var role in new[] { "Admin", "User" })
+        if (!await roleManager.RoleExistsAsync(role))
+            await roleManager.CreateAsync(new IdentityRole(role));
+
+    var admin = await userManager.FindByEmailAsync("admin@hotel.com");
+    if (admin == null)
+    {
+        admin = new IdentityUser { UserName = "admin@hotel.com", Email = "admin@hotel.com", EmailConfirmed = true };
+        var result = await userManager.CreateAsync(admin,
+            builder.Configuration["AdminUser:Password"] ?? "ChangeMe@Admin2026");
+        if (!result.Succeeded)
+        {
+            logger.LogError("Admin seeding failed: {Errors}", string.Join("; ", result.Errors.Select(e => e.Description)));
+            admin = null;
+        }
+    }
+    if (admin != null && !await userManager.IsInRoleAsync(admin, "Admin"))
+        await userManager.AddToRoleAsync(admin, "Admin");
+}
 
 // Configure the HTTP request pipeline.
 if (app.Environment.IsDevelopment())
