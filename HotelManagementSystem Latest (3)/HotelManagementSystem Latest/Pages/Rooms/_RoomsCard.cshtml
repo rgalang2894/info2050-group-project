@@ -2,25 +2,38 @@
 
 <table class="table table-bordered table-striped table-hover">
     <thead>
-        <tr>
-            <th>Room Number</th>
-            <th>Room Type</th>
-            <th>Price Per Night</th>
-            <th>Actions</th>
-        </tr>
+    <tr>
+        <th>Room Number</th>
+        <th>Room Type</th>
+        <th>Price Per Night</th>
+        <th>Actions</th>
+    </tr>
+    </thead>
+
     <tbody>
-        @foreach (var room in Model)
-        {
-            <tr>
-                <td>@room.RoomNumber</td>
-                <td>@room.roomType</td>
-                <td>@room.PricePerNight</td>
-                <td>
+    @foreach (var room in Model)
+    {
+        <tr>
+            <td>@room.RoomNumber</td>
+            <td>@room.roomType</td>
+            <td>@room.PricePerNight</td>
+
+            <td>
+                @if (User.IsInRole("Admin"))
+                {
                     <a asp-page="./Edit" asp-route-id="@room.Id">Edit</a>
-                    <a asp-page="./Details" asp-route-id="@room.Id">Details</a>
+                    <span> | </span>
+                }
+
+                <a asp-page="./Details" asp-route-id="@room.Id">Details</a>
+
+                @if (User.IsInRole("Admin"))
+                {
+                    <span> | </span>
                     <a asp-page="./Delete" asp-route-id="@room.Id">Delete</a>
-                </td>
-            </tr>
-        }
+                }
+            </td>
+        </tr>
+    }
     </tbody>
 </table>
