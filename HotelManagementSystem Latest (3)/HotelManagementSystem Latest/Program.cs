@@ -4,90 +4,111 @@ using Microsoft.EntityFrameworkCore;
 
 WebApplicationBuilder builder = WebApplication.CreateBuilder(args);
 
-builder.Logging.AddSimpleConsole(options =>
-{
-    options.SingleLine = true;
-    options.TimestampFormat = "yyyy-MM-dd HH:mm:ss ";
-});
+// 1. Configure Database Connection
+string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") 
+    ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 
-// Add services to the container.
-string connectionString = builder.Configuration.GetConnectionString("DefaultConnection") ?? throw new InvalidOperationException("Connection string 'DefaultConnection' not found.");
 builder.Services.AddDbContext<ApplicationDbContext>(options =>
     options.UseSqlite(connectionString));
 
 builder.Services.AddDatabaseDeveloperPageExceptionFilter();
 
+// 2. Add ASP.NET Core Identity with Roles
 builder.Services.AddDefaultIdentity<IdentityUser>(options =>
     {
-        options.SignIn.RequireConfirmedAccount = true;
+        // Set RequireConfirmedAccount to false for local development so registered users can log in immediately
+        options.SignIn.RequireConfirmedAccount = false;
 
-        // A07: strong password policy
-        options.Password.RequiredLength = 10;
+        // Password requirements
+        options.Password.RequiredLength = 8;
         options.Password.RequireDigit = true;
         options.Password.RequireUppercase = true;
         options.Password.RequireLowercase = true;
-        options.Password.RequireNonAlphanumeric = true;
+        options.Password.RequireNonAlphanumeric = false;
 
-        // A07: brute-force protection (lockout)
+        // Lockout protection against brute-force attacks
         options.Lockout.AllowedForNewUsers = true;
         options.Lockout.MaxFailedAccessAttempts = 5;
         options.Lockout.DefaultLockoutTimeSpan = TimeSpan.FromMinutes(15);
     })
-    .AddRoles<IdentityRole>()
-
+    .AddRoles<IdentityRole>() // <-- Must be present for Role-Based Authorization
     .AddEntityFrameworkStores<ApplicationDbContext>();
-builder.Services.AddAuthorization(options =>
-{
-    options.AddPolicy("AdminOnly", policy =>
-        policy.RequireRole("Admin"));
-});
 
-builder.Services.AddRazorPages();
-
+// 3. Configure Cookie Security Policy
 builder.Services.ConfigureApplicationCookie(options =>
 {
     options.ExpireTimeSpan = TimeSpan.FromMinutes(30);
     options.SlidingExpiration = true;
-    options.Cookie.HttpOnly = true;
-    options.Cookie.SameSite = SameSiteMode.Strict;
+    options.Cookie.HttpOnly = true; // Prevents XSS attacks on cookies
+    options.Cookie.SameSite = SameSiteMode.Lax; // Allows seamless redirects during login
     options.LoginPath = "/Identity/Account/Login";
     options.LogoutPath = "/Identity/Account/Logout";
-    options.Cookie.SecurePolicy = CookieSecurePolicy.Always;
     options.AccessDeniedPath = "/Identity/Account/AccessDenied";
 });
 
+// 4. Set Page Authorization Conventions
+builder.Services.AddRazorPages(options =>
+{
+    // Restrict all Bookings pages to authenticated users
+    options.Conventions.AuthorizeFolder("/Bookings");
+
+    // Restrict Room administrative actions strictly to Admins
+    options.Conventions.AuthorizePage("/Rooms/Create", "AdminOnly");
+    options.Conventions.AuthorizePage("/Rooms/Edit", "AdminOnly");
+    options.Conventions.AuthorizePage("/Rooms/Delete", "AdminOnly");
+});
+
+builder.Services.AddAuthorization(options =>
+{
+    options.AddPolicy("AdminOnly", policy => policy.RequireRole("Admin"));
+});
+
 WebApplication app = builder.Build();
-// A01: seed roles and admin account
+
+// 5. Database Migration & Role/Admin Seeding
 using (var scope = app.Services.CreateScope())
 {
     var context = scope.ServiceProvider.GetRequiredService<ApplicationDbContext>();
-    await context.Database.MigrateAsync(); // self-creates DB on a fresh clone
+    await context.Database.MigrateAsync();
 
     var roleManager = scope.ServiceProvider.GetRequiredService<RoleManager<IdentityRole>>();
     var userManager = scope.ServiceProvider.GetRequiredService<UserManager<IdentityUser>>();
-    var logger = scope.ServiceProvider.GetRequiredService<ILogger<Program>>();
 
+    // 1. Ensure Roles Exist
     foreach (var role in new[] { "Admin", "User" })
+    {
         if (!await roleManager.RoleExistsAsync(role))
             await roleManager.CreateAsync(new IdentityRole(role));
+    }
 
-    var admin = await userManager.FindByEmailAsync("admin@hotel.com");
+    // 2. Ensure adminUser@hotel.com exists and has the Admin Role
+    var adminEmail = "adminUser@hotel.com";
+    var admin = await userManager.FindByEmailAsync(adminEmail);
+
     if (admin == null)
     {
-        admin = new IdentityUser { UserName = "admin@hotel.com", Email = "admin@hotel.com", EmailConfirmed = true };
-        var result = await userManager.CreateAsync(admin,
-            builder.Configuration["AdminUser:Password"] ?? "ChangeMe@Admin2026");
-        if (!result.Succeeded)
+        admin = new IdentityUser 
+        { 
+            UserName = adminEmail, 
+            Email = adminEmail, 
+            EmailConfirmed = true 
+        };
+        var result = await userManager.CreateAsync(admin, "Admin123!");
+        if (result.Succeeded)
         {
-            logger.LogError("Admin seeding failed: {Errors}", string.Join("; ", result.Errors.Select(e => e.Description)));
-            admin = null;
+            await userManager.AddToRoleAsync(admin, "Admin");
         }
     }
-    if (admin != null && !await userManager.IsInRoleAsync(admin, "Admin"))
-        await userManager.AddToRoleAsync(admin, "Admin");
+    else
+    {
+        // If user already exists, make sure they are in the Admin role
+        if (!await userManager.IsInRoleAsync(admin, "Admin"))
+        {
+            await userManager.AddToRoleAsync(admin, "Admin");
+        }
+    }
 }
-
-// Configure the HTTP request pipeline.
+// 6. Request Pipeline Middleware
 if (app.Environment.IsDevelopment())
 {
     app.UseMigrationsEndPoint();
@@ -95,20 +116,18 @@ if (app.Environment.IsDevelopment())
 else
 {
     app.UseExceptionHandler("/Error");
-    // The default HSTS value is 30 days. You may want to change this for production scenarios, see https://aka.ms/aspnetcore-hsts.
     app.UseHsts();
 }
 
 app.UseHttpsRedirection();
-
 app.UseStaticFiles();
+
 app.UseRouting();
 
+// Authentication MUST come before Authorization
 app.UseAuthentication();
 app.UseAuthorization();
 
-app.MapStaticAssets();
-app.MapRazorPages()
-   .WithStaticAssets();
+app.MapRazorPages();
 
 app.Run();

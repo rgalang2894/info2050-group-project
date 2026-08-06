@@ -1,29 +1,51 @@
 ﻿@page
 @model HotelManagementSystem.Pages.Bookings.IndexModel
+
 @{
     ViewData["Title"] = "Bookings";
 }
 
-<form method="get" class="mb-3">
-    <div class="row">
-        <div class="col-auto">
-            <select asp-for="FilterByRoomId" class="form-control" asp-items="Model.RoomList">
-                <option value="">Select a room</option>
-            </select>
-        </div>
-    </div>
-    <div>
-        <button class="btn btn-primary mt-3 mb-3">Filter by Room Number</button>
-        <a asp-page="./Index" class="btn btn-secondary mt-3 mb-3">Clear Filter</a>
-        <a asp-page="/Bookings/Create" class="btn btn-success mt-3 mb-3">Book a Room</a>
-    </div>
+<div class="container">
+    <h2>Bookings</h2>
 
-    <partial name="_BookingsCard" model="Model.Bookings" />
-</form>
+    <p>
+        <a asp-page="Create" class="btn btn-primary">Create New Booking</a>
+    </p>
 
-<a asp-page="/Rooms/Index" class="btn btn-primary">Back to Rooms</a>
-
-@if (!Model.Bookings.Any())
-{
-    <p>No bookings found.</p>
-}
+    <table class="table table-bordered">
+        <thead>
+        <tr>
+            <th>Customer Name</th>
+            <th>Room Number</th>
+            <th>Check-In Date</th>
+            <th>Check-Out Date</th>
+            <th>Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        @if (Model.Booking != null && Model.Booking.Any())
+        {
+            @foreach (var item in Model.Booking)
+            {
+                <tr>
+                    <td>@item.CustomerName</td>
+                    <td>@(item.Room?.RoomNumber ?? item.RoomId.ToString())</td>
+                    <td>@item.CheckInDate.ToShortDateString()</td>
+                    <td>@item.CheckOutDate.ToShortDateString()</td>
+                    <td>
+                        <a asp-page="./Edit" asp-route-id="@item.Id">Edit</a> |
+                        <a asp-page="./Details" asp-route-id="@item.Id">Details</a> |
+                        <a asp-page="./Delete" asp-route-id="@item.Id" class="text-danger">Delete</a>
+                    </td>
+                </tr>
+            }
+        }
+        else
+        {
+            <tr>
+                <td colspan="5" class="text-muted">No bookings found.</td>
+            </tr>
+        }
+        </tbody>
+    </table>
+</div>

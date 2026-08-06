@@ -1,3 +1,4 @@
+using System.Threading.Tasks;
 using HotelManagementSystem.Data;
 using HotelManagementSystem.Models;
 using Microsoft.AspNetCore.Authorization;
@@ -7,10 +8,11 @@ using Microsoft.EntityFrameworkCore;
 
 namespace HotelManagementSystem.Pages.Bookings
 {
-    [Authorize(Roles = "Admin")]
+    [Authorize]
     public class DeleteModel : PageModel
     {
         private readonly ApplicationDbContext _context;
+
         public DeleteModel(ApplicationDbContext context)
         {
             _context = context;
@@ -21,35 +23,40 @@ namespace HotelManagementSystem.Pages.Bookings
 
         public async Task<IActionResult> OnGetAsync(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            Booking? booking = await _context.Bookings
+            if (id == null) return NotFound();
+
+            var booking = await _context.Bookings
                 .Include(b => b.Room)
                 .FirstOrDefaultAsync(m => m.Id == id);
 
-            if (booking == null)
+            if (booking == null) return NotFound();
+
+            // Prevent Broken Access Control: User MUST own booking OR be Admin[cite: 1]
+            if (!User.IsInRole("Admin") && booking.CustomerName != User.Identity?.Name)
             {
-                return NotFound();
+                return Forbid();
             }
+
             Booking = booking;
             return Page();
         }
 
         public async Task<IActionResult> OnPostAsync(int? id)
         {
-            if (id == null)
-            {
-                return NotFound();
-            }
-            Booking? booking = await _context.Bookings.FindAsync(id);
+            if (id == null) return NotFound();
 
-            if (booking != null)
+            var booking = await _context.Bookings.FindAsync(id);
+
+            if (booking == null) return NotFound();
+
+            if (!User.IsInRole("Admin") && booking.CustomerName != User.Identity?.Name)
             {
-                _context.Bookings.Remove(booking);
-                await _context.SaveChangesAsync();
+                return Forbid();
             }
+
+            _context.Bookings.Remove(booking);
+            await _context.SaveChangesAsync();
+
             return RedirectToPage("./Index");
         }
     }

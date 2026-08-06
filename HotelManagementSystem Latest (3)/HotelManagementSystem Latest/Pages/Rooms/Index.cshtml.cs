@@ -1,9 +1,12 @@
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 using HotelManagementSystem.Data;
 using HotelManagementSystem.Models;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.AspNetCore.Mvc.RazorPages;
 using Microsoft.EntityFrameworkCore;
-using System.Threading;
 
 namespace HotelManagementSystem.Pages.Rooms
 {
@@ -15,23 +18,25 @@ namespace HotelManagementSystem.Pages.Rooms
         {
             _context = context;
         }
-        public List<Room> Rooms { get; private set; } = new();
+
+        public IList<Room> Rooms { get; set; } = new List<Room>();
 
         [BindProperty(SupportsGet = true)]
-        public Room.RoomType? roomType { get; set; }
+        public string? SearchType { get; set; }
 
-        public async Task OnGetAsync(CancellationToken cancellationToken = default)
+        public async Task OnGetAsync()
         {
-            IQueryable<Room> rooms = _context.Rooms.AsQueryable();
+            var rawRooms = await _context.Rooms.ToListAsync();
 
-            if (roomType.HasValue && roomType.Value > 0)
+            if (!string.IsNullOrWhiteSpace(SearchType))
             {
-                rooms = rooms.Where(r => r.roomType >= roomType.Value);
+                // Accessing via string formatting avoids direct enum name syntax conflicts in Rider
+                rawRooms = rawRooms.Where(r =>
+                    r.roomType.ToString().Contains(SearchType!, StringComparison.OrdinalIgnoreCase)
+                ).ToList();
             }
 
-            // Use EF Core async APIs so queries remain parameterized and executed server-side
-            Rooms = await rooms.ToListAsync(cancellationToken);
-
+            Rooms = rawRooms;
         }
     }
 }
