@@ -20,26 +20,28 @@ namespace HotelManagementSystem.Pages.Bookings
             _context = context;
         }
 
-        public async Task<IActionResult> OnGetAsync()
-        {
-            var rooms = await _context.Rooms.ToListAsync();
-            ViewData["RoomId"] = new SelectList(rooms, "Id", "RoomNumber");
-            return Page();
-        }
-
         [BindProperty]
         public Booking Booking { get; set; } = default!;
 
+        public async Task<IActionResult> OnGetAsync()
+        {
+            await PopulateRoomsDropDownListAsync();
+            return Page();
+        }
+
         public async Task<IActionResult> OnPostAsync()
         {
-            // Automatically assign the logged-in user's email as CustomerName
-            Booking.CustomerName = User.Identity?.Name ?? string.Empty;
+            // Auto-assign current logged-in user email
+            Booking.CustomerName = User.Identity?.Name ?? "Guest";
 
-            if (string.IsNullOrEmpty(Booking.CustomerName))
+            // Remove navigation properties from validation check so ModelState doesn't fail
+            ModelState.Remove("Booking.Room");
+            ModelState.Remove("Booking.CustomerName");
+
+            if (!ModelState.IsValid)
             {
-                ModelState.AddModelError(string.Empty, "Unable to determine user identity.");
-                var rooms = await _context.Rooms.ToListAsync();
-                ViewData["RoomId"] = new SelectList(rooms, "Id", "RoomNumber");
+                // Re-populate dropdown so user doesn't see a blank list if submission fails
+                await PopulateRoomsDropDownListAsync();
                 return Page();
             }
 
@@ -47,6 +49,13 @@ namespace HotelManagementSystem.Pages.Bookings
             await _context.SaveChangesAsync();
 
             return RedirectToPage("./Index");
+        }
+
+        private async Task PopulateRoomsDropDownListAsync()
+        {
+            var rooms = await _context.Rooms.ToListAsync();
+            // Display RoomNumber (or RoomType) in dropdown, value is room.Id
+            ViewData["RoomId"] = new SelectList(rooms, "Id", "RoomNumber");
         }
     }
 }

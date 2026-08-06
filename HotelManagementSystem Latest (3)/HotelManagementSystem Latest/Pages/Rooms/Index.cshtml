@@ -49,6 +49,8 @@
                             @if (User.IsInRole("Admin"))
                             {
                                 <span> | </span>
+                                <a asp-page="Create">+Add new room</a>
+                                <span> | </span>
                                 <a asp-page="./Edit" asp-route-id="@room.Id" class="text-warning">Edit</a>
                                 <span> | </span>
                                 <a asp-page="./Delete" asp-route-id="@room.Id" class="text-danger">Delete</a>
